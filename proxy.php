@@ -8,9 +8,9 @@ use function \staifa\php_bandwidth_hero_proxy\redirect\redirect;
 // Serves as basic router
 // This function is used in main flow control
 function route(): callable {
-  return function($context) {
-    ["route" => $route] = $context;
-    if ($route == "/") return $context;
+  return function($conf) {
+    ["route" => $route] = $conf;
+    if ($route == "/") return $conf;
     if ($route == "/favicon.ico") { http_response_code(204); ob_clean(); echo null; };
     return false;
   };
@@ -19,9 +19,9 @@ function route(): callable {
 // Sends a GET request to given target URL
 // This function is used in main flow control
 function send_request(): callable {
-  return function($context) {
+  return function($conf) {
     ["request" => $request,
-     "target_url" => $target_url] = $context;
+     "target_url" => $target_url] = $conf;
     $error_msg = null;
     $response_headers = [];
     $request_headers = [
@@ -73,8 +73,8 @@ function send_request(): callable {
 
     if (curl_errno($ch)) $error_msg = curl_error($ch);
     curl_close($ch);
-    if ($error_msg || $status >= 400) { redirect($context); return false; };
+    if ($error_msg || $status >= 400) redirect($conf);
 
-    return $context += $res;
+    return $conf += $res;
   };
 };

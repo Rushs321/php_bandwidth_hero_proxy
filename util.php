@@ -11,11 +11,11 @@ namespace staifa\php_bandwidth_hero_proxy\util;
  * Usage:
  *     flow(config\create(), context\create(), proxy\route());
  */
-function flow(...$fns) {
-  $ctx = null;
+function flow($config, ...$fns) {
+  $conf = $config;
   foreach ($fns as $fn) {
-    if ($res = call_user_func($fn, $ctx)) {
-      $ctx = $res;
+    if ($res = call_user_func($fn, $conf)) {
+      $conf = $res;
     } else {
       return null;
     }
@@ -37,10 +37,11 @@ function thread(callable ...$fns) {
 
 /**
  * An or that takes multiple arguments and returns first truthful value or false
+ * If the argument is a function, it's evaluated
  * Doesn't evaluate after first truthful value is found
  *
  * Usage:
- *    $res = v_or(true, 1 == 0, false);
+ *    $res = v_or(true, 1 == 0, fn() => "foo");
  */
 function v_or(...$args) {
   foreach($args as $arg) {
@@ -51,13 +52,20 @@ function v_or(...$args) {
 
 /**
  * An and that takes multiple arguments and returns last truthful value or false
+ * If the argument is a function, it's evaluated
  *
  * Usage:
- *    $res = v_and(true, 1 == 0, false);
+ *    $res = v_and(true, 1 == 0, fn() => "foo");
  */
 function v_and(...$args) {
-  return array_reduce($args, fn($c, $i) => ($c && $i) ? $i : false);
-}
+  foreach($args as $key => $arg) {
+    if (is_callable($arg)) $arg = $arg();
+    $i = $key + 1;
+    if (is_callable($arg[$i])) $arg2 = $arg[$i]();
+    ($i == count($args) && arg2) ? $arg2 : false;
+    ($arg && $arg2) ? $arg2 : false;
+  };
+};
 
 /**
  * For each array key-value pair, calls function with this pair as request_params

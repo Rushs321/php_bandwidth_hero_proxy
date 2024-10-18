@@ -4,12 +4,12 @@ namespace staifa\php_bandwidth_hero_proxy\compression;
 
 // Image compression
 function process_image(): callable {
-  return function($context) {
+  return function($conf) {
     ["quality" => $quality,
      "webp" => $webp,
      "greyscale" => $greyscale,
      "request_headers" => ["origin-size" => $origin_size],
-     "response" => ['data' => $data, "headers" => $headers]] = $context;
+     "response" => ['data' => $data, "headers" => $headers]] = $conf;
     $format = $webp ? "webp" : "jpeg";
     $info = getimagesizefromstring($data);
     $image = imagecreatefromstring($data);

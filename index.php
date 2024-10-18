@@ -44,9 +44,9 @@ use \staifa\php_bandwidth_hero_proxy\validation;
 use function \staifa\php_bandwidth_hero_proxy\util\flow;
 
 // Main execution loop
-function run() {
+function run($config) {
   flow(
-    config\create(),
+    $config(),
     auth\authenticate(),
     context\create(),
     proxy\route(),
@@ -56,4 +56,4 @@ function run() {
   );
 }
 
-run();
+run(config\create());

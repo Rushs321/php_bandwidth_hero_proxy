@@ -4,8 +4,8 @@ namespace staifa\php_bandwidth_hero_proxy\bypass;
 
 // Sets bypass headers and returns the response with unchanged body
 // Ends the flow execution
-function bypass($context) {
-  ['response' => ["data" => $data, "headers" => $headers]] = $context;
+function bypass($conf) {
+  ['response' => ["data" => $data, "headers" => $headers]] = $conf;
 
   array_walk($headers, fn($v, $k) => header($k . ": " . $v));
   header("x-proxy-bypass: 1");

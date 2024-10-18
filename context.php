@@ -5,10 +5,10 @@ namespace staifa\php_bandwidth_hero_proxy\context;
 // Creates application context from configuration
 // This function is used in main flow control
 function create(): callable {
-  return function($config) {
+  return function($conf) {
     ["request_params" => ["url" => $url],
      "request_uri" => $req_uri,
-     "min_compress_length" => $min_comp] = $config;
+     "min_compress_length" => $min_comp] = $conf;
 
     if (!isset($url)) { ob_clean(); echo "bandwidth-hero-proxy"; };
     if (is_array($url)) $url = join("&url=", $url);
@@ -26,6 +26,6 @@ function create(): callable {
       ];
     };
 
-    return $config += $computed_values();
+    return $conf += $computed_values();
   };
 };
