@@ -9,8 +9,7 @@ function authenticate(): callable {
      "auth_user" => $user,
      "auth_password" => $pw] = $context;
 
-    if ((isset($user) && $req["PHP_AUTH_USER"] == $user) AND
-      (isset($pw) && $req["PHP_AUTH_PW"] == $pw)) { return $context; };
+    if ($req["PHP_AUTH_USER"] == $user && $req["PHP_AUTH_PW"] == $pw) { return $context; };
 
     header("WWW-Authenticate: Basic realm=\"Bandwidth-Hero Compression Service\"");
     http_response_code(401);
