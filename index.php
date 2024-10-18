@@ -28,17 +28,21 @@ include_once("auth.php");
 include_once("bypass.php");
 include_once("compression.php");
 include_once("config.php");
-include_once("context.php");
 include_once("proxy.php");
+include_once("router.php");
 include_once("util.php");
 include_once("redirect.php");
 include_once("validation.php");
 
+include_once("boundary/buffer.php");
+include_once("boundary/http.php");
+include_once("boundary/image.php");
+
 use \staifa\php_bandwidth_hero_proxy\auth;
 use \staifa\php_bandwidth_hero_proxy\compression;
 use \staifa\php_bandwidth_hero_proxy\config;
-use \staifa\php_bandwidth_hero_proxy\context;
 use \staifa\php_bandwidth_hero_proxy\proxy;
+use \staifa\php_bandwidth_hero_proxy\router;
 use \staifa\php_bandwidth_hero_proxy\validation;
 
 use function \staifa\php_bandwidth_hero_proxy\util\flow;
@@ -48,8 +52,7 @@ function run($config) {
   flow(
     $config(),
     auth\authenticate(),
-    context\create(),
-    proxy\route(),
+    router\route(),
     proxy\send_request(),
     validation\should_compress(),
     compression\process_image()

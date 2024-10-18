@@ -2,18 +2,18 @@
 
 namespace staifa\php_bandwidth_hero_proxy\redirect;
 
-use function staifa\php_bandwidth_hero_proxy\util\v_and;
+function redirect($ctx) {
+  ["config" => ["target_url" => $target_url],
+   "buffer" => $buffer,
+   "http" => $http] = $ctx;
+  if ($http["headers_sent"]()) echo null;
 
-function redirect($conf) {
-  ["target_url" => $target_url] = $conf;
-  v_and(headers_sent(), exit());
-
-  header("content-length: 0");
+  $http["set_header"]("content-length: 0");
   $to_remove = ["cache-control", "expires","date", "etag"];
-  array_walk($to_remove, fn($v, $k) => header_remove($v));
-  header("location: " . urlencode($target_url));
-  http_response_code(302);
+  array_walk($to_remove, fn($v, $k) => $http["header_remove"]($v));
+  $http["set_header"]("location: " . urlencode($target_url));
+  $http["set_status"](302);
 
-  ob_clean();
+  $buffer["clean"]();
   echo null;
 };

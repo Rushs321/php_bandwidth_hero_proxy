@@ -5,33 +5,37 @@ namespace staifa\php_bandwidth_hero_proxy\compression;
 // Image compression
 function process_image(): callable {
   return function($conf) {
-    ["quality" => $quality,
-     "webp" => $webp,
-     "greyscale" => $greyscale,
-     "request_headers" => ["origin-size" => $origin_size],
-     "response" => ['data' => $data, "headers" => $headers]] = $conf;
+    ["config" => [
+       "quality" => $quality,
+       "webp" => $webp,
+       "greyscale" => $greyscale,
+       "request_headers" => ["origin-size" => $origin_size],
+       "response" => ['data' => $data, "headers" => $headers]],
+     "buffer" => $buffer,
+     "http" => $http,
+     "image" => $image] = $conf;
+
     $format = $webp ? "webp" : "jpeg";
-    $info = getimagesizefromstring($data);
-    $image = imagecreatefromstring($data);
-    if ($greyscale) imagefilter($image, IMG_FILTER_GRAYSCALE);
+    $info = $image["info"]($data);
+    $inst = $image["create"]($data);
+    if ($greyscale) $image["filter"]($inst, IMG_FILTER_GRAYSCALE);
 
-    ob_clean();
+    $buffer["clean"]();
+    $buffer["start"]();
+    ($format == "webp") ? $image["webp"]($inst, null, $quality) : $image["jpeg"]($inst, null, $quality);
+    $converted_image = $buffer["get"]();
+    $buffer["end_clean"]();
+    $image["destroy"]($inst);
 
-    ob_start();
-    ($format == "webp") ? imagewebp($image, null, $quality) : imagejpeg($image, null, $quality);
-    $converted_image = ob_get_contents();
-    ob_end_clean();
-    imagedestroy($image);
-
-    array_walk($headers, fn($v, $k) => header($k . ": " . $v));
+    array_walk($headers, fn($v, $k) => $http["set_header"]($k . ": " . $v));
 
     $size = strlen($converted_image);
-    header("content-length: " . $size);
-    header("content-type: image/" . $format);
-    header("x-original-size: " . $origin_size);
-    header("x-bytes-saved: " . $origin_size - $size);
+    $http["set_header"]("content-length: " . $size);
+    $http["set_header"]("content-type: image/" . $format);
+    $http["set_header"]("x-original-size: " . $origin_size);
+    $http["set_header"]("x-bytes-saved: " . $origin_size - $size);
 
-    ob_clean();
+    $buffer["clean"]();
     echo $converted_image;
   };
 };
