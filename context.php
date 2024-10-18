@@ -9,7 +9,8 @@ function create(): callable {
     ["request_params" => ["url" => $url],
      "request_uri" => $req_uri,
      "min_compress_length" => $min_comp] = $config;
-    if (!$url) { ob_clean(); echo "bandwidth-hero-proxy"; return false; };
+
+    if (!isset($url)) { ob_clean(); echo "bandwidth-hero-proxy"; };
     if (is_array($url)) $url = join("&url=", $url);
 
     $computed_values = function() use ($url, $req_uri, $min_comp) {
@@ -20,7 +21,6 @@ function create(): callable {
       };
       return [
         "min_transparent_compress_length" => $min_comp * 100,
-        "request_params" => ["url" => $url],
         "route" => $route($req_uri),
         "target_url" => $process_url()
       ];

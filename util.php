@@ -43,6 +43,8 @@ function thread(callable ...$fns) {
  */
 function v_or(...$args) {
   $compare_and_return = function($carry, $item) {
+    if (is_callable($item)) $item = $item();
+    if (is_callable($carry)) $item = $carry();
     if ($item) return $item;
     if ($carry) return $carry;
     return false;

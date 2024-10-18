@@ -71,7 +71,7 @@ function send_request(): callable {
       )
     ];
 
-    curl_errno($ch) ?? $error_msg = curl_error($ch);
+    if (curl_errno($ch)) $error_msg = curl_error($ch);
     curl_close($ch);
     if ($error_msg || $status >= 400) { redirect($context); return false; };
 

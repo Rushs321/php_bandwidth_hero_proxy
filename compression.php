@@ -13,7 +13,7 @@ function process_image(): callable {
     $format = $webp ? "webp" : "jpeg";
     $info = getimagesizefromstring($data);
     $image = imagecreatefromstring($data);
-    $greyscale ?? imagefilter($image, IMG_FILTER_GRAYSCALE);
+    if ($greyscale) imagefilter($image, IMG_FILTER_GRAYSCALE);
 
     ob_clean();
 

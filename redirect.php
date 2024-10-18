@@ -7,7 +7,8 @@ function redirect($context) {
   if (headers_sent()) return false;
 
   header("content-length: 0");
-  array_walk(["cache-control", "expires","date", "etag"], fn($v, $k) => header_remove($v));
+  $to_remove = ["cache-control", "expires","date", "etag"];
+  array_walk($to_remove, fn($v, $k) => header_remove($v));
   header("location: " . urlencode($target_url));
   http_response_code(302);
 
