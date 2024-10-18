@@ -13,7 +13,7 @@ namespace staifa\php_bandwidth_hero_proxy\util;
  */
 function flow(...$fns) {
   $ctx = null;
-  foreach ($fns as $key => $fn) {
+  foreach ($fns as $fn) {
     if ($res = call_user_func($fn, $ctx)) {
       $ctx = $res;
     } else {
@@ -36,22 +36,18 @@ function thread(callable ...$fns) {
 }
 
 /**
- * An or that takes multiple arguments and returns last truthful value or false
+ * An or that takes multiple arguments and returns first truthful value or false
+ * Doesn't evaluate after first truthful value is found
  *
  * Usage:
  *    $res = v_or(true, 1 == 0, false);
  */
 function v_or(...$args) {
-  $compare_and_return = function($carry, $item) {
+  foreach($args as $arg) {
     if (is_callable($item)) $item = $item();
-    if (is_callable($carry)) $item = $carry();
     if ($item) return $item;
-    if ($carry) return $carry;
-    return false;
   };
-
-  return array_reduce($args, $compare_and_return);
-}
+};
 
 /**
  * An and that takes multiple arguments and returns last truthful value or false
