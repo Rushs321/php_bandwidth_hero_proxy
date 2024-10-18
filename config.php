@@ -10,8 +10,8 @@ const MIN_COMPRESS_LENGTH = 1024;
 function create(): callable {
   return fn() => [
     "quality" => ctype_digit($_REQUEST["default_quality"]) || DEFAULT_QUALITY,
-    "auth_user" => getenv("LOGIN"),
-    "auth_password" => getenv("PASSWORD"),
+    "auth_user" => getenv("BHERO_LOGIN"),
+    "auth_password" => getenv("BHERO_PASSWORD"),
     "greyscale" => $_REQUEST["bw"] ==! 0,
     "min_compress_length" => MIN_COMPRESS_LENGTH,
     "request_params" => $_REQUEST,
