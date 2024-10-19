@@ -6,6 +6,8 @@ Alternative proxy for [Bandwidth Hero](https://bandwidth-hero.com/) browser exte
 
 This service lowers your bandwidth usage by compressing images before they are sent to your device. You have to host the service on your home server, webhosting (works very well for me) or service like [Heroku](https://www.heroku.com/). [Docker](https://www.docker.com/) image coming soon.
 
+No dependencies outside common PHP installation.
+
 ## Why?
 
 > Necessity is the mother of invention
@@ -15,7 +17,7 @@ Our old webhosting doesn't support `node.js` and I'm lately working on moblie co
 ## Installation
 
 - Clone this repository or download the source archive [here](https://github.com/staifa/php_bandwidth_hero_proxy/archive/refs/heads/main.zip)
-- After unpacking the archive, copy all `.php` files over ftp or drop them via your webhosting web gui to the root folder of your domain
+- After unpacking the archive, copy all files and folders over ftp or drop them via your webhosting web gui to the root folder of your domain
 - Wait for a bit for changes to settle
 
 That's it! Now the easy part:
@@ -40,6 +42,7 @@ There is no authorization switched on by default. There are 2 ways to set basic 
 * Setting them in you system environment variables
 
     * [Windows](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/set_1)
+    * Linux/MacOS
 
 ```Linux/MacOS
     export BHERO_LOGIN=yourusername
@@ -52,8 +55,8 @@ There is no authorization switched on by default. There are 2 ways to set basic 
 Change these 2 lines
 
 ```php
-    "auth_user" => getenv("BHERO_LOGIN"),
-    "auth_password" => getenv("BHERO_PASSWORD"),
+    "auth_user" => $_ENV("BHERO_LOGIN"),
+    "auth_password" => $_ENV("BHERO_PASSWORD"),
 ```
 
 to
@@ -92,5 +95,14 @@ If you see crappy screenshot from Half-Life, congratulations!
 ![Victory!](/../../../../staifa/readme-assets/blob/main/bhero4.jpeg)
 
 If not, feel free to [open an issue](https://github.com/staifa/php_bandwidth_hero_proxy/issues)!
+
+## Running tests
+
+* From project's root directory, go to `test` folder.
+* Run
+
+```shell
+php test_runner.php
+```
 
 <a href="https://www.buymeacoffee.com/staifa" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
