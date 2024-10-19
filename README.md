@@ -1,4 +1,4 @@
-[![Test](https://github.com/staifa/php_bandwidth_hero_proxy/actions/workflows/php.yml/badge.svg)](https://github.com/staifa/php_bandwidth_hero_proxy/actions/workflows/php.yml)
+<img alt="GitHub Actions Workflow Status" src="https://img.shields.io/github/actions/workflow/status/staifa/php_bandwidth_hero_proxy/php.yml?style=for-the-badge&logoSize=100">
 
 # PHP Bandwidth Hero Proxy
 
