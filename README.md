@@ -1,3 +1,5 @@
+![Tests](https://github.com/staifa/php_bandwidth_hero_proxy/blob/5b394db6ebb3f7142bc66380134e7060f14b42c1/.github/workflows/php.yml/badge.svg)
+
 # PHP Bandwidth Hero Proxy
 
 > :warning: This is still very much work in progress. Any feedback is highly appreciated!
