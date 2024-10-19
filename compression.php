@@ -3,7 +3,7 @@
 namespace staifa\php_bandwidth_hero_proxy\compression;
 
 // Image compression
-function process_image(): callable {
+function process_image() {
   return function($conf) {
     ["config" => [
        "quality" => $quality,

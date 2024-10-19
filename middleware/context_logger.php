@@ -8,6 +8,8 @@ function wrap_context_logger($client_fn) {
     try {
       $client_fn($ctx);
     } catch (\Exception $e) {
+      // don't log the response body
+      unset($ctx["config"]["response"]["data"]);
       error_log(print_r($ctx, true), 4);
       throw new \Exception($e);
     }

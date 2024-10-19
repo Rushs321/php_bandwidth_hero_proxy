@@ -38,6 +38,8 @@ include_once("boundary/buffer.php");
 include_once("boundary/http.php");
 include_once("boundary/image.php");
 
+include_once("middleware/context_logger.php");
+
 use \staifa\php_bandwidth_hero_proxy\auth;
 use \staifa\php_bandwidth_hero_proxy\compression;
 use \staifa\php_bandwidth_hero_proxy\config;
@@ -45,6 +47,7 @@ use \staifa\php_bandwidth_hero_proxy\proxy;
 use \staifa\php_bandwidth_hero_proxy\router;
 use \staifa\php_bandwidth_hero_proxy\validation;
 
+use function \staifa\php_bandwidth_hero_proxy\middleware\context_logger\wrap_context_logger;
 use function \staifa\php_bandwidth_hero_proxy\util\flow;
 
 // Main execution loop
@@ -59,4 +62,6 @@ function run($config) {
   );
 }
 
-run(config\create());
+wrap_context_logger(
+  run(config\create())
+);
