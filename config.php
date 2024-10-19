@@ -5,6 +5,7 @@ namespace staifa\php_bandwidth_hero_proxy\config;
 use staifa\php_bandwidth_hero_proxy\boundary\buffer;
 use staifa\php_bandwidth_hero_proxy\boundary\http;
 use staifa\php_bandwidth_hero_proxy\boundary\image;
+use staifa\php_bandwidth_hero_proxy\boundary\logger;
 
 const DEFAULT_QUALITY = 40;
 const MIN_COMPRESS_LENGTH = 1024;
@@ -17,6 +18,8 @@ function create() {
       "http" => http\init(),
       "buffer" => buffer\init(),
       "image" => image\init(),
+      "logger" => logger\init(),
+      "instances" => [],
     ];
 
     $defaults = [

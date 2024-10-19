@@ -37,7 +37,9 @@ include_once("validation.php");
 include_once("boundary/buffer.php");
 include_once("boundary/http.php");
 include_once("boundary/image.php");
+include_once("boundary/logger.php");
 
+include_once("middleware/cleanup.php");
 include_once("middleware/context_logger.php");
 
 use \staifa\php_bandwidth_hero_proxy\auth;
@@ -47,6 +49,7 @@ use \staifa\php_bandwidth_hero_proxy\proxy;
 use \staifa\php_bandwidth_hero_proxy\router;
 use \staifa\php_bandwidth_hero_proxy\validation;
 
+use function \staifa\php_bandwidth_hero_proxy\middleware\cleanup\clean_instances;
 use function \staifa\php_bandwidth_hero_proxy\middleware\context_logger\wrap_context_logger;
 use function \staifa\php_bandwidth_hero_proxy\util\flow;
 
@@ -63,5 +66,6 @@ function run($config) {
 }
 
 wrap_context_logger(
+  clean_instances(
   run(config\create())
-);
+));

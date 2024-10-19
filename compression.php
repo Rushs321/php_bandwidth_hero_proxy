@@ -4,7 +4,7 @@ namespace staifa\php_bandwidth_hero_proxy\compression;
 
 // Image compression
 function process_image() {
-  return function($conf) {
+  return function($ctx) {
     ["config" => [
        "quality" => $quality,
        "webp" => $webp,
@@ -13,11 +13,12 @@ function process_image() {
        "response" => ['data' => $data, "headers" => $headers]],
      "buffer" => $buffer,
      "http" => $http,
-     "image" => $image] = $conf;
+     "image" => $image] = $ctx;
 
     $format = $webp ? "webp" : "jpeg";
     $info = $image["info"]($data);
     $inst = $image["create"]($data);
+    $ctx["instances"] += ["image" => $inst];
     if ($greyscale) $image["filter"]($inst, IMG_FILTER_GRAYSCALE);
 
     $buffer["clean"]();

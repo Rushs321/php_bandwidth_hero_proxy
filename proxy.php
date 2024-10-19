@@ -24,6 +24,7 @@ function send_request() {
     ];
 
     $ch = $http["start"]();
+    $ctx["instances"] += ["http" => $ch];
     doto(
       fn($c, $o, $v) => $http["set"]($c, $o, $v),
       $ch,
