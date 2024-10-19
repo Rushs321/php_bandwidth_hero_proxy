@@ -15,34 +15,22 @@ function buffer()
 function http()
 {
     return [
-      "start" => fn () => null,
-      "set" => fn ($ch, $opt, $val) => null,
-      "exec" => fn ($ch) => null,
-      "info" => fn ($ch, $info) => null,
-      "err" => fn ($ch) => null,
-      "err_no" => fn ($ch) => null,
-      "close" => fn ($ch) => null,
-      "set_status" => fn ($status) => null,
-      "set_header" => fn ($header) => null,
+      "start" => function($_) { return null; },
+      "set" => function($_, $__, $___) { return null; },
+      "exec" => function($_) { return null; },
+      "info" => function($_, $info) { return null; },
+      "err" => function($_) { return null; },
+      "err_no" => function($_) { return null; },
+      "close" => function($_) { return null; },
+      "set_status" => function($v) { echo $v; },
+      "set_header" => function($v) { echo $v; },
       "headers_sent" => fn () => null,
-      "header_remove" => fn ($header) => null,
-      "request_opts" => fn ($request_headers, &$response_headers, $target_url) => null
+      "header_remove" => fn($_) => null,
+      "request_opts" => function($_, &$__, $___) { return null; }
     ];
 }
 
-function image()
-{
-    return [
-      "info" => fn ($data) => null,
-      "create" => fn ($data) => null,
-      "filter" => fn ($img, $filter) => null,
-      "webp" => fn ($img, $_file, $quality) => null,
-      "jpeg" => fn ($img, $_file, $quality) => null,
-      "destroy" => fn ($img) => null
-    ];
-};
-
 function logger()
 {
-    return ["error_log" => fn ($data, $mode) => null];
+    return ["error_log" => function($data, $_) { echo $data; }];
 };

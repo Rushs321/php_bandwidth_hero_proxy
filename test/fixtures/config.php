@@ -19,7 +19,6 @@ function mock()
     $ctx = $ctx();
     $ctx["buffer"] = boundaries\buffer();
     $ctx["http"] = boundaries\http();
-    $ctx["image"] = boundaries\image();
     $ctx["logger"] = boundaries\logger();
     $ctx["config"] = [
       "request" => [

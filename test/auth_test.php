@@ -16,10 +16,15 @@ function success($ctx)
 function failure($ctx)
 {
     unset($ctx["config"]["auth_user"]);
-    $cl = authenticate();
+
     ob_start();
+    $cl = authenticate();
     $cl($ctx);
     $res = ob_get_contents();
     ob_end_clean();
-    return assert($res == "Access denied");
+
+    $exp_header = 'WWW-Authenticate: Basic realm="Bandwidth-Hero Compression Service"';
+    $exp_status = 401;
+    $exp_body = "Access denied";
+    return assert($res == ($exp_header . $exp_status . $exp_body));
 }
