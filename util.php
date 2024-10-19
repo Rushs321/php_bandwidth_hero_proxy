@@ -11,15 +11,16 @@ namespace staifa\php_bandwidth_hero_proxy\util;
  * Usage:
  *     flow(config\create(), context\create(), proxy\route());
  */
-function flow($config, ...$fns) {
-  $conf = $config;
-  foreach ($fns as $fn) {
-    if ($res = call_user_func($fn, $conf)) {
-      $conf = $res;
-    } else {
-      return null;
-    }
-  };
+function flow($config, ...$fns)
+{
+    $conf = $config;
+    foreach ($fns as $fn) {
+        if ($res = call_user_func($fn, $conf)) {
+            $conf = $res;
+        } else {
+            return null;
+        }
+    };
 }
 
 /**
@@ -31,8 +32,9 @@ function flow($config, ...$fns) {
  * Usage:
  *    $res = thread(add_computed_values(), add_services())($config);
  */
-function thread(callable ...$fns) {
-  return fn(...$args) => array_reduce($fns, fn($acc, $fn) => call_user_func($fn, $acc), ...$args);
+function thread(callable ...$fns)
+{
+    return fn (...$args) => array_reduce($fns, fn ($acc, $fn) => call_user_func($fn, $acc), ...$args);
 }
 
 /**
@@ -43,11 +45,16 @@ function thread(callable ...$fns) {
  * Usage:
  *    $res = v_or(true, 1 == 0, fn() => "foo");
  */
-function v_or(...$args) {
-  foreach($args as $arg) {
-    if (is_callable($item)) $item = $item();
-    if ($item) return $item;
-  };
+function v_or(...$args)
+{
+    foreach ($args as $arg) {
+        if (is_callable($item)) {
+            $item = $item();
+        }
+        if ($item) {
+            return $item;
+        }
+    };
 };
 
 /**
@@ -57,14 +64,19 @@ function v_or(...$args) {
  * Usage:
  *    $res = v_and(true, 1 == 0, fn() => "foo");
  */
-function v_and(...$args) {
-  foreach($args as $key => $arg) {
-    if (is_callable($arg)) $arg = $arg();
-    $i = $key + 1;
-    if (is_callable($arg[$i])) $arg2 = $arg[$i]();
-    ($i == count($args) && arg2) ? $arg2 : false;
-    ($arg && $arg2) ? $arg2 : false;
-  };
+function v_and(...$args)
+{
+    foreach ($args as $key => $arg) {
+        if (is_callable($arg)) {
+            $arg = $arg();
+        }
+        $i = $key + 1;
+        if (is_callable($arg[$i])) {
+            $arg2 = $arg[$i]();
+        }
+        ($i == count($args) && arg2) ? $arg2 : false;
+        ($arg && $arg2) ? $arg2 : false;
+    };
 };
 
 /**
@@ -76,6 +88,7 @@ function v_and(...$args) {
  * Usage:
  *    doto('curl_setopt', $http, ['foo' => 1, 'bar' => 2]);
  */
-function doto($fn, $instance, $props) {
-  array_walk($props, fn($v, $k) => call_user_func_array($fn, [$instance, $k, $v]));
+function doto($fn, $instance, $props)
+{
+    array_walk($props, fn ($v, $k) => call_user_func_array($fn, [$instance, $k, $v]));
 }
