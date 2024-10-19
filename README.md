@@ -1,4 +1,4 @@
-![CI](workflows/php.yml/badge.svg)
+[![Test](https://github.com/staifa/php_bandwidth_hero_proxy/actions/workflows/php.yml/badge.svg)](https://github.com/staifa/php_bandwidth_hero_proxy/actions/workflows/php.yml)
 
 # PHP Bandwidth Hero Proxy
 
