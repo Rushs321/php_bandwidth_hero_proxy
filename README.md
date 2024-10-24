@@ -2,7 +2,7 @@
 
 # PHP Bandwidth Hero Proxy
 
-> :warning: This is still very much work in progress. Any feedback is highly appreciated!
+> :warning: Work in progress. Any feedback is highly appreciated!
 
 Alternative proxy for [Bandwidth Hero](https://bandwidth-hero.com/) browser extension written in PHP.
 
@@ -15,6 +15,10 @@ No dependencies outside common PHP installation.
 > Necessity is the mother of invention
 
 Our old webhosting doesn't support `node.js` and I'm lately working on moblie connection a lot, so any way to save some megabytes is welcome.
+
+## Demo
+
+![Demo](/../../../../staifa/readme-assets/blob/main/sbhero8.gif)
 
 ## Installation
 
