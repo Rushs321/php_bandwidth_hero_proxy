@@ -17,7 +17,9 @@ function process_image()
 
         $ctx["instances"] += ["image" => $inst];
 
-        if ($greyscale) { $i_filter($inst, IMG_FILTER_GRAYSCALE); };
+        if ($greyscale) {
+            $i_filter($inst, IMG_FILTER_GRAYSCALE);
+        };
 
         ob_clean();
         ob_start();

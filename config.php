@@ -33,8 +33,8 @@ function create()
 
         ["url" => $url,
             "request_uri" => $req_uri,
-    "min_compress_length" => $min_comp
-  ] = $defaults;
+            "min_compress_length" => $min_comp
+        ] = $defaults;
 
         if (!isset($url)) {
             ob_clean();
