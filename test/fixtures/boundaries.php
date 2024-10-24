@@ -25,5 +25,5 @@ function http()
 
 function logger()
 {
-    return ["error_log" => function ($data, $_) { echo $data; }];
+    return ["error_log" => function ($data, $_) { $_SERVER["error"] = $data; }];
 };

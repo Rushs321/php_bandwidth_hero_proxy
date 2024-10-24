@@ -28,9 +28,7 @@ function success_jpeg($config)
     $c["http"]["exec"] = function ($_) { return file_get_contents('./fixtures/images/img.jpg'); };
     $c = fn () => $c;
 
-    ob_start();
     $body = app($c);
-    ob_clean();
     $exp_headers = ["content-type: image",
               "content-encoding: identity",
               "content-length: 970",

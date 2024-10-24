@@ -13,10 +13,9 @@ namespace staifa\php_bandwidth_hero_proxy\util;
  */
 function flow($config, ...$fns)
 {
-    $conf = $config;
     foreach ($fns as $fn) {
-        if ($res = call_user_func($fn, $conf)) {
-            $conf = $res;
+        if ($res = call_user_func($fn, $config)) {
+            $config = $res;
         } else {
             return null;
         }

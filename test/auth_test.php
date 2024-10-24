@@ -19,7 +19,7 @@ function failure($ctx)
 
     ob_start();
     $cl = authenticate();
-    $res = $cl($ctx);
+    $cl($ctx);
     $res = ob_get_contents();
     ob_end_clean();
 
