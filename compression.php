@@ -12,23 +12,24 @@ function process_image()
            "greyscale" => $greyscale,
            "request_headers" => ["origin-size" => $origin_size],
            "response" => ['data' => $data, "headers" => $headers]],
-            "buffer" => $buffer,
             "http" => $http,
             "image" => $image] = $ctx;
 
         $format = $webp ? "webp" : "jpeg";
         $info = $image["info"]($data);
         $inst = $image["create"]($data);
+
         $ctx["instances"] += ["image" => $inst];
         if ($greyscale) {
             $image["filter"]($inst, IMG_FILTER_GRAYSCALE);
         }
 
-        $buffer["clean"]();
-        $buffer["start"]();
+        ob_clean();
+        ob_start();
+
         ($format == "webp") ? $image["webp"]($inst, null, $quality) : $image["jpeg"]($inst, null, $quality);
-        $converted_image = $buffer["get"]();
-        $buffer["end_clean"]();
+        $converted_image = ob_get_contents();
+        ob_end_clean();
         $image["destroy"]($inst);
 
         array_walk($headers, fn ($v, $k) => $http["set_header"]($k . ": " . $v));
@@ -39,7 +40,7 @@ function process_image()
         $http["set_header"]("x-original-size: " . $origin_size);
         $http["set_header"]("x-bytes-saved: " . $origin_size - $size);
 
-        $buffer["clean"]();
+        ob_clean();
         echo $converted_image;
     };
 };

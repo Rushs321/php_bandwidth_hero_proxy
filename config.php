@@ -2,7 +2,6 @@
 
 namespace staifa\php_bandwidth_hero_proxy\config;
 
-use staifa\php_bandwidth_hero_proxy\boundary\buffer;
 use staifa\php_bandwidth_hero_proxy\boundary\http;
 use staifa\php_bandwidth_hero_proxy\boundary\image;
 use staifa\php_bandwidth_hero_proxy\boundary\logger;
@@ -17,7 +16,6 @@ function create()
     return function () {
         $app_context = [
           "http" => http\init(),
-          "buffer" => buffer\init(),
           "image" => image\init(),
           "logger" => logger\init(),
           "instances" => [],
@@ -29,23 +27,24 @@ function create()
           "auth_password" => $_ENV["BHERO_PASSWORD"],
           "greyscale" => $_REQUEST["bw"] != 0,
           "min_compress_length" => MIN_COMPRESS_LENGTH,
-          "request_params" => $_REQUEST,
+          "url" => $_REQUEST["url"],
           "request_uri" => $_SERVER["REQUEST_URI"],
           "request" => $_SERVER,
           "webp" => !$_REQUEST["jpeg"]
         ];
 
-        ["request_params" => ["url" => $url],
+        ["url" => $url,
             "request_uri" => $req_uri,
             "min_compress_length" => $min_comp] = $defaults;
 
         if (!isset($url)) {
-            $app_context["buffer"]["clean"]();
+            ob_clean();
             echo "bandwidth-hero-proxy";
         };
+
         if (is_array($url)) {
             $url = join("&url=", $url);
-        }
+        };
 
         $values = function () use ($url, $req_uri, $min_comp, $greyscale) {
             $route = fn ($uri) => ($pos = strpos($uri, "?")) ? substr($uri, 0, $pos) : $uri;

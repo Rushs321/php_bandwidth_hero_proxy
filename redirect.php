@@ -4,9 +4,7 @@ namespace staifa\php_bandwidth_hero_proxy\redirect;
 
 function redirect($ctx)
 {
-    ["config" => ["target_url" => $target_url],
-        "buffer" => $buffer,
-        "http" => $http] = $ctx;
+    ["config" => ["target_url" => $target_url], "http" => $http] = $ctx;
     if ($http["headers_sent"]()) {
         echo null;
     }
@@ -17,6 +15,6 @@ function redirect($ctx)
     $http["set_header"]("location: " . urlencode($target_url));
     $http["set_status"](302);
 
-    $buffer["clean"]();
+    ob_clean();
     echo null;
 };

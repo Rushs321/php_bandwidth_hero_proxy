@@ -19,12 +19,14 @@ function failure($ctx)
 
     ob_start();
     $cl = authenticate();
-    $cl($ctx);
+    $res = $cl($ctx);
     $res = ob_get_contents();
     ob_end_clean();
 
-    $exp_header = 'WWW-Authenticate: Basic realm="Bandwidth-Hero Compression Service"';
     $exp_status = 401;
-    $exp_body = "Access denied";
-    return assert($res == ($exp_header . $exp_status . $exp_body));
+    $exp_header = 'WWW-Authenticate: Basic realm="Bandwidth-Hero Compression Service"';
+
+    assert(in_array($exp_header, $_SERVER["headers"]));
+    assert($_SERVER["status"] == $exp_status);
+    return assert($res == "Access denied");
 }

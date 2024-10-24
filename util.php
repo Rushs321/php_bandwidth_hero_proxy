@@ -3,7 +3,7 @@
 namespace staifa\php_bandwidth_hero_proxy\util;
 
 /**
- * Basically simplified either monad
+ * Basically simplified maybe monad
  * Takes chain of closures which use app context as a parameter and return value
  * of a closure it returns
  * The execution is short-circuited when a function returns false

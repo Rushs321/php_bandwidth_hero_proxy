@@ -6,7 +6,7 @@ use function staifa\php_bandwidth_hero_proxy\bypass\bypass;
 
 // Checks if the response will be processed or proxied
 // This function is used in main flow control
-function should_compress(): callable
+function should_compress()
 {
     return function ($ctx) {
         $run_checks = function ($ctx) {

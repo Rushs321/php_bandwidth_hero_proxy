@@ -7,7 +7,6 @@ function authenticate()
 {
     return function ($ctx) {
         ["http" => $http,
-            "buffer" => $buffer,
             "config" => [
               "request" => $req,
               "auth_user" => $user,
@@ -21,7 +20,7 @@ function authenticate()
 
         $http["set_header"]("WWW-Authenticate: Basic realm=\"Bandwidth-Hero Compression Service\"");
         $http["set_status"](401);
-        $buffer["clean"]();
+        ob_clean();
         echo "Access denied";
     };
 };
