@@ -11,10 +11,9 @@ function success_log($ctx)
     $failing_fn = fn ($_) => throw new \Exception("error_to_log");
 
     try {
-        wrap_context_logger($failing_fn)($ctx);
+        wrap_context_logger($failing_fn)($ctx());
     } catch (\Exception $e) {
-        assert(str_starts_with($e->getMessage(), "Exception: error_to_log"));
-        assert(str_starts_with($_SERVER["error"], "Array"));
-
+        // check that the exception went through the middleware
+        assert(str_contains($e, "middleware/context_logger.php"));
     }
 };

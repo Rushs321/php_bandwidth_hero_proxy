@@ -13,7 +13,7 @@ function process_image()
         extract($ctx["image"], EXTR_REFS);
 
         $format = $webp ? "webp" : "jpeg";
-        $info = $i_info($data);
+        /*$info = $i_info($data);*/
         $inst = $i_create($data);
 
         $ctx["instances"] += ["image" => $inst];
@@ -36,8 +36,12 @@ function process_image()
         $set_header("content-type: image/" . $format);
         $set_header("x-original-size: " . $origin_size);
         $set_header("x-bytes-saved: " . $origin_size - $size);
+        error_log(print_r($origin_size, true));
+        error_log(print_r($size, true));
+        error_log(print_r($greyscale, true));
 
         ob_clean();
         echo $converted_image;
+        return $ctx;
     };
 };

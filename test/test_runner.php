@@ -4,7 +4,7 @@ namespace staifa\php_bandwidth_hero_proxy\test\test_runner;
 
 error_reporting(E_ERROR);
 
-include_once("fixtures/env.php");
+include_once("fixtures/globals.php");
 include_once("../auth.php");
 include_once("../util.php");
 include_once("../main.php");
@@ -25,5 +25,5 @@ ob_start();
 (main_test\success_webp_greyscale(config\mock()));
 (main_test\success_webp_quality(config\mock()));
 (main_test\success_jpeg(config\mock()));
-(context_logger_test\success_log(config\mock()()));
+(context_logger_test\success_log(config\mock()));
 ob_clean();

@@ -25,7 +25,10 @@ namespace staifa\php_bandwidth_hero_proxy\index;
 ini_set('display_errors', 0);
 
 include_once("main.php");
+include_once("config.php");
+
+use staifa\php_bandwidth_hero_proxy\config;
 
 use function staifa\php_bandwidth_hero_proxy\main\run;
 
-run();
+run(config\create());

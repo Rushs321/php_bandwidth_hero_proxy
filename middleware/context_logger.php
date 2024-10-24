@@ -7,12 +7,11 @@ function wrap_context_logger($client_fn)
 {
     return function ($ctx) use ($client_fn) {
         try {
-            $client_fn($ctx);
+            return $client_fn($ctx);
         } catch (\Exception $e) {
             // don't log the response body
             unset($ctx["config"]["response"]["data"]);
-            extract($ctx["logger"], EXTR_REFS);
-            $error_log(print_r($ctx, true), 4);
+            error_log($e . "\nApp context: " . print_r($ctx["config"], true));
             throw new \Exception($e);
         }
     };
