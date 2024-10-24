@@ -11,10 +11,10 @@ function success_webp($config)
     ob_clean();
     $exp_headers = ["content-type: image",
               "content-encoding: identity",
-              "content-length: 322",
+              "content-length: 250",
               "content-type: image/webp",
               "x-original-size: 328",
-              "x-bytes-saved: 6"];
+              "x-bytes-saved: 78"];
 
     assert($_SERVER["headers"] == $exp_headers);
     return assert(str_starts_with("RIFF:WEBPVP8X", $body));
@@ -33,10 +33,10 @@ function success_jpeg($config)
     ob_clean();
     $exp_headers = ["content-type: image",
               "content-encoding: identity",
-              "content-length: 980",
+              "content-length: 970",
               "content-type: image/jpeg",
               "x-original-size: 8498",
-              "x-bytes-saved: 7518"];
+              "x-bytes-saved: 7528"];
 
     assert($_SERVER["headers"] == $exp_headers);
     return assert(str_starts_with("RIFF:WEBPVP8X", $body));

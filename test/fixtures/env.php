@@ -3,7 +3,7 @@
 namespace staifa\php_bandwidth_hero_proxy\fixtures\env;
 
 $_REQUEST["url"] = "poodle.com";
-$_REQUEST["default_quality"] = "30";
+$_REQUEST["l"] = "30";
 $_REQUEST["jpeg"] = null;
 $_REQUEST["bw"] = "0";
 $_REQUEST["url"] = "foo.com";
