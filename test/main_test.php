@@ -15,14 +15,31 @@ function success_webp($config)
               "x-bytes-saved: 6"];
 
     assert($_SERVER["headers"] == $exp_headers);
-    return assert(str_starts_with("RIFF:", $body));
+    return assert(str_starts_with("RIFF:WEBPVP8X", $body));
 }
 
-// Greyscale setting works
+// Greyscale setting works. The app returns greyscale
+// images by default
 function success_webp_greyscale($config)
 {
-    $_REQUEST["bw"] = "1";
-    $_SERVER["REQUEST_URI"] = "/?url=foo.com&bw=1";
+    unset($_REQUEST["bw"]);
+    $_SERVER["REQUEST_URI"] = "/?url=foo.com";
+    $body = run($config);
+    $exp_headers = ["content-type: image",
+              "content-encoding: identity",
+              "content-length: 250",
+              "content-type: image/webp",
+              "x-original-size: 328",
+              "x-bytes-saved: 78"];
+
+    assert($_SERVER["headers"] == $exp_headers);
+    return assert(str_starts_with("RIFF:WEBPVP8X", $body));
+}
+
+function success_webp_greyscale_explicit($config)
+{
+    $_REQUEST["bw"] = 1;
+    $_SERVER["REQUEST_URI"] = "/?url=foo.com?bw=1";
     $body = run($config);
     $exp_headers = ["content-type: image",
               "content-encoding: identity",

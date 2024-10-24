@@ -35,8 +35,6 @@ That's it! Now the easy part:
 * Find the `Configure data compression service` button under `Compression settings` menu option
 * Paste a link to your compression service to the big
 
-![Compression service settings](/../../../../staifa/readme-assets/blob/main/bhero2.jpeg)
-
 ## Configuration
 
 There is no authorization switched on by default. There are 2 ways to set basic authentication with username and password
