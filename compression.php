@@ -17,6 +17,7 @@ function process_image()
 
         $ctx["instances"] += ["image" => $inst];
 
+        if ($origin_type == "image/png") { $i_palette($inst); };
         if ($greyscale) {
             $i_filter($inst, IMG_FILTER_GRAYSCALE);
         };

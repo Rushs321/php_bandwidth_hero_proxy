@@ -69,6 +69,24 @@ function success_webp_quality($config)
     return assert(str_starts_with("RIFF:WEBPVP8X", $body));
 }
 
+function success_png($config)
+{
+    $c = $config();
+    $c["http"]["c_exec"] = function ($_) { return file_get_contents('./fixtures/images/img.png'); };
+    $c = fn () => $c;
+
+    $body = run($c);
+    $exp_headers = ["content-type: image",
+              "content-encoding: identity",
+              "content-length: 322",
+              "content-type: image/webp",
+              "x-original-size: 8690",
+              "x-bytes-saved: 8368"];
+
+    assert($_SERVER["headers"] == $exp_headers);
+    return assert(str_starts_with("RIFF:WEBPVP8X", $body));
+}
+
 function success_jpeg($config)
 {
     $_SERVER["REQUEST_URI"] = "/?url=foo.com&jpeg=1";
