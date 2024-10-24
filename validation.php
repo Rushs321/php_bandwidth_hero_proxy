@@ -10,16 +10,9 @@ function should_compress()
 {
     return function ($ctx) {
         $run_checks = function ($ctx) {
-            ["config" => [
-               "webp" => $webp,
-               "response" => $response,
-               "min_compress_length" => $min_compress_length,
-               "min_transparent_compress_length" => $min_transparent_compress_length,
-               "request_uri" => $request_uri,
-               "target_url" => $target_url,
-               "request_headers" => [
-               "origin-type" => $origin_type,
-               "origin-size" => $origin_size]]] = $ctx;
+            extract($ctx["config"], EXTR_REFS);
+            extract($request_headers, EXTR_REFS);
+
             return !isset($request_uri)
             || !isset($target_url)
             || !str_starts_with($origin_type, "image")

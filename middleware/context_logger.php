@@ -11,7 +11,8 @@ function wrap_context_logger($client_fn)
         } catch (\Exception $e) {
             // don't log the response body
             unset($ctx["config"]["response"]["data"]);
-            $ctx["logger"]["error_log"](print_r($ctx, true), 4);
+            extract($ctx["logger"], EXTR_REFS);
+            $error_log(print_r($ctx, true), 4);
             throw new \Exception($e);
         }
     };

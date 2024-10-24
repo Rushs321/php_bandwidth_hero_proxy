@@ -5,13 +5,13 @@ namespace staifa\php_bandwidth_hero_proxy\boundary\http;
 function init()
 {
     return [
-      "start" => fn () => curl_init(),
-      "set" => fn ($ch, $opt, $val) => curl_setopt($ch, $opt, $val),
-      "exec" => fn ($ch) => curl_exec($ch),
-      "info" => fn ($ch, $info) => curl_getinfo($ch, $info),
-      "err" => fn ($ch) => curl_error($ch),
-      "err_no" => fn ($ch) => curl_errno($ch),
-      "close" => fn ($ch) => curl_close($ch),
+      "c_init" => fn () => curl_init(),
+      "c_set" => fn ($ch, $opt, $val) => curl_setopt($ch, $opt, $val),
+      "c_exec" => fn ($ch) => curl_exec($ch),
+      "c_info" => fn ($ch, $info) => curl_getinfo($ch, $info),
+      "c_err" => fn ($ch) => curl_error($ch),
+      "c_err_no" => fn ($ch) => curl_errno($ch),
+      "c_close" => fn ($ch) => curl_close($ch),
       "set_status" => fn ($status) => http_response_code($status),
       "set_header" => fn ($header) => header($header),
       "headers_sent" => fn () => headers_sent(),

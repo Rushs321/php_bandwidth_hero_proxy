@@ -6,9 +6,7 @@ use function staifa\php_bandwidth_hero_proxy\main\app;
 
 function success_webp($config)
 {
-    ob_start();
     $body = app($config);
-    ob_clean();
     $exp_headers = ["content-type: image",
               "content-encoding: identity",
               "content-length: 250",
@@ -25,7 +23,7 @@ function success_jpeg($config)
     $_SERVER["REQUEST_URI"] = "/?url=foo.com&jpeg=true";
     $_REQUEST["jpeg"] = true;
     $c = $config();
-    $c["http"]["exec"] = function ($_) { return file_get_contents('./fixtures/images/img.jpg'); };
+    $c["http"]["c_exec"] = function ($_) { return file_get_contents('./fixtures/images/img.jpg'); };
     $c = fn () => $c;
 
     $body = app($c);

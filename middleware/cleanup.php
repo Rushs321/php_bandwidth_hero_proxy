@@ -10,10 +10,10 @@ function wrap_graceful_shutdown($client_fn)
             $client_fn($ctx);
         } finally {
             if ($i = $ctx["instances"]["http"]) {
-                $ctx["http"]["close"]($i);
+                $ctx["http"]["c_close"]($i);
             }
             if ($i = $ctx["instances"]["image"]) {
-                $ctx["image"]["destroy"]($i);
+                $ctx["image"]["i_destroy"]($i);
             }
         }
     };
