@@ -29,7 +29,7 @@ function flow($config, ...$fns)
  * execution
  *
  * Usage:
- *    $res = thread(add_computed_values(), add_services())($config);
+ *    $res = thread(add_computed_values(), add_services(), compute_result())($config);
  */
 function thread(callable ...$fns)
 {
@@ -37,9 +37,9 @@ function thread(callable ...$fns)
 }
 
 /**
- * An or that takes multiple arguments and returns first truthful value or false
+ * An `or` that takes multiple arguments and returns first truthful value or false
  * If the argument is a function, it's evaluated
- * Doesn't evaluate after first truthful value is found
+ * Doesn't evaluate after first truthful value is returned (short-circuit)
  *
  * Usage:
  *    $res = v_or(true, 1 == 0, fn() => "foo");
@@ -57,7 +57,7 @@ function v_or(...$args)
 };
 
 /**
- * An and that takes multiple arguments and returns last truthful value or false
+ * An `and` that takes multiple arguments and returns last truthful value or false
  * If the argument is a function, it's evaluated
  *
  * Usage:
@@ -79,7 +79,7 @@ function v_and(...$args)
 };
 
 /**
- * For each array key-value pair, calls function with this pair as request_params
+ * For each array's key-value pair, calls function with this pair as params
  * on the provided object instance
  * Pass the function name as string, no sensible way around it
  * This mutates the object instance, so no values are returned

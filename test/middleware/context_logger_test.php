@@ -2,8 +2,6 @@
 
 namespace staifa\php_bandwidth_hero_proxy\test\middleware\context_logger_test;
 
-include("../../middleware/context_logger.php");
-
 use function staifa\php_bandwidth_hero_proxy\middleware\context_logger\wrap_context_logger;
 
 function success_log($ctx)

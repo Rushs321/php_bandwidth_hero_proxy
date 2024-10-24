@@ -8,6 +8,7 @@ include_once("fixtures/globals.php");
 include_once("../auth.php");
 include_once("../util.php");
 include_once("../main.php");
+include_once("../middleware/context_logger.php");
 include_once("auth_test.php");
 include_once("main_test.php");
 include_once("middleware/context_logger_test.php");
