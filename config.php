@@ -22,7 +22,7 @@ function create()
         ];
 
         $defaults = [
-          "quality" => ctype_digit($_REQUEST["l"]) || DEFAULT_QUALITY,
+          "quality" => $_REQUEST["l"] ?? DEFAULT_QUALITY,
           "auth_user" => $_ENV["BHERO_LOGIN"],
           "auth_password" => $_ENV["BHERO_PASSWORD"],
           "greyscale" => $_REQUEST["bw"] == 0,

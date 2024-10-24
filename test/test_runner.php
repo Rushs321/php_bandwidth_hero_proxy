@@ -22,6 +22,8 @@ ob_start();
 (auth_test\success(config\mock()()));
 (auth_test\failure(config\mock()()));
 (main_test\success_webp(config\mock()));
+(main_test\success_webp_greyscale(config\mock()));
+(main_test\success_webp_quality(config\mock()));
 (main_test\success_jpeg(config\mock()));
 (context_logger_test\success_log(config\mock()()));
 ob_clean();

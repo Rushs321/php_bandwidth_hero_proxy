@@ -13,9 +13,12 @@ use staifa\php_bandwidth_hero_proxy\test\fixtures\boundaries;
 
 function mock()
 {
+    $_REQUEST["bw"] = 0;
+    $_SERVER["headers"] = [];
+    unset($_REQUEST["jpeg"]);
+    unset($_REQUEST["l"]);
+
     return function () {
-        $_SERVER["headers"] = [];
-        unset($_SERVER["status"]);
         $ctx = config\create();
         $ctx = $ctx();
 
