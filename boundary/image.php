@@ -7,6 +7,7 @@ function init()
     return [
       "i_info" => fn ($data) => getimagesizefromstring($data),
       "i_create" => fn ($data) => imagecreatefromstring($data),
+      "i_palette" => fn ($img) => imagepalettetotruecolor($img),
       "i_filter" => fn ($img, $filter) => imagefilter($img, $filter),
       "i_webp" => fn ($img, $_file, $quality) => imagewebp($img, $_file, $quality),
       "i_jpeg" => fn ($img, $_file, $quality) => imagejpeg($img, $_file, $quality),
