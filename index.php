@@ -22,7 +22,9 @@ namespace staifa\php_bandwidth_hero_proxy\index;
  *    GD
  */
 
-ini_set('display_errors', 0);
+ini_set('display_errors', '0');
+ini_set('log_errors', '1');
+error_reporting(E_ALL);
 
 include_once("main.php");
 include_once("config.php");

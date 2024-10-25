@@ -24,6 +24,34 @@ PHP also brings the advantage of being able to run the service on all webhosting
 
 ## Installation
 
+### Docker
+
+Pull the app image from [dockerhub](https://hub.docker.com/r/staifa/php-bandwidth-hero-proxy)
+
+```
+docker pull staifa/php-bandwidth-hero-proxy
+```
+
+Or build it yourself
+
+```
+docker build -t php-bandwidth-hero-proxy .
+```
+
+then run it
+
+```
+docker run -p 9696:8000 --name php-bandwidth-hero-proxy php-bandwidth-hero-proxy
+```
+
+and verify that the service is running by pasting following link into web browser
+
+```
+http://localhost:9696/?url=https://1gr.cz/o/sph/mask-map3.png&l=20
+```
+
+### Manual setup
+
 - Clone this repository or download the source archive [here](https://github.com/staifa/php_bandwidth_hero_proxy/archive/refs/heads/main.zip)
 - After unpacking the archive, copy all files and folders over ftp or drop them via your webhosting web gui to the root folder of your domain
 - Wait for a bit for changes to settle
@@ -109,6 +137,12 @@ If not, feel free to [open an issue](https://github.com/staifa/php_bandwidth_her
 
 ```shell
 php test_runner.php
+```
+
+or use docker
+
+```
+docker exec --workdir /usr/src/app/test php-bandwidth-hero-proxy php test_runner.php
 ```
 
 <a href="https://www.buymeacoffee.com/staifa" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>

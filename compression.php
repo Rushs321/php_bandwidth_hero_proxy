@@ -24,7 +24,6 @@ function process_image()
             $i_filter($inst, IMG_FILTER_GRAYSCALE);
         };
 
-        ob_clean();
         ob_start();
 
         ($format == "webp") ? $i_webp($inst, null, $quality) : $i_jpeg($inst, null, $quality);
@@ -40,7 +39,6 @@ function process_image()
         $set_header("x-original-size: " . $origin_size);
         $set_header("x-bytes-saved: " . $origin_size - $size);
 
-        ob_clean();
         echo $converted_image;
         return $ctx;
     };
