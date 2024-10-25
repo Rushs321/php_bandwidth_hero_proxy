@@ -54,6 +54,7 @@ function send_request()
         $c_close($ch);
         if ($error_msg || $status >= 400) {
             redirect($ctx);
+            return false;
         }
 
         return $ctx;
