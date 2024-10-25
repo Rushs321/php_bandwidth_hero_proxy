@@ -65,7 +65,7 @@ PHP itself brings some new possibilities to the table too. It's nice to have opt
     ![Extension settings](/../../../../staifa/readme-assets/blob/main/bhero1.jpeg)
 
 * Find the `Configure data compression service` button under `Compression settings` menu option
-* Paste a link to your compression service to the big
+* Paste a link to your compression service to the big URL input field
 
 
 ## Configuration
