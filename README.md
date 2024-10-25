@@ -83,16 +83,16 @@ There is no authorization switched on by default. There are 2 ways to set basic 
         ```
 
 * Editing `config.php` file
-
-  Change following lines
-  
-            "auth_user" => $_ENV("BHERO_LOGIN"),
-            "auth_password" => $_ENV("BHERO_PASSWORD"),
-    
-  to
-  
-            "auth_user" => "yourusername",
-            "auth_password" => "yourpassword",
+    * Change following lines
+        ```
+        "auth_user" => $_ENV("BHERO_LOGIN"),
+        "auth_password" => $_ENV("BHERO_PASSWORD"),
+        ```
+    * to
+        ``` 
+        "auth_user" => "yourusername",
+        "auth_password" => "yourpassword",
+        ```
 
 All other settings have same defaults and can be changed in the extension settings. Quality is set between 0 to 100, 40 being a default. Greyscale setting is available for even more bandwidth savings.
 
