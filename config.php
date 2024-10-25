@@ -37,8 +37,8 @@ function create()
         ] = $defaults;
 
         if (!isset($url)) {
-            ob_clean();
             echo "bandwidth-hero-proxy";
+            return false;
         };
 
         if (is_array($url)) {
