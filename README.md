@@ -5,8 +5,8 @@
 > :warning: Work in progress. Any feedback is highly appreciated!
 
 Alternative proxy for [Bandwidth Hero](https://bandwidth-hero.com/) browser extension written in PHP.
-[Original node.js service](https://github.com/ayastreb/bandwidth-hero-proxy)
-[Frontend](https://github.com/ayastreb/bandwidth-hero)
+* [Original node.js service](https://github.com/ayastreb/bandwidth-hero-proxy)
+* [Frontend](https://github.com/ayastreb/bandwidth-hero)
 
 This service lowers your bandwidth usage by compressing images before they are sent to your device. You have to host the service on your home server, webhosting (works very well for me) or service like [Heroku](https://www.heroku.com/).
 It's not an anonymization proxy.
@@ -31,12 +31,10 @@ PHP itself brings some new possibilities to the table too. It's nice to have opt
     ```
     docker pull staifa/php-bandwidth-hero-proxy
     ```
-
 * Or build it by running following command in the root folder of this project
     ```
     docker build -t php-bandwidth-hero-proxy .
     ```
-
 * then run it
     * without basic authorization
         ```
@@ -50,7 +48,6 @@ PHP itself brings some new possibilities to the table too. It's nice to have opt
         ```
         http://localhost:9696/?url=https://1gr.cz/o/sph/mask-map3.png&l=20
         ```
-
 ### Manual setup
 
 - Clone this repository or download the source archive [here](https://github.com/staifa/php_bandwidth_hero_proxy/archive/refs/heads/main.zip)
@@ -69,6 +66,7 @@ PHP itself brings some new possibilities to the table too. It's nice to have opt
 
 * Find the `Configure data compression service` button under `Compression settings` menu option
 * Paste a link to your compression service to the big
+
 
 ## Configuration
 
