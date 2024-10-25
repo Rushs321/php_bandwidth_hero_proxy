@@ -104,7 +104,7 @@ To run the service on your local machina:
     php -S localhost:8000 index.php
     ```
 
-* You'll now have the service running on your localhost on port `8000` as indicated by to log in your terminal
+* You'll now have the service running on your localhost on port `8000` as indicated by the log in your terminal
 
     ![Service log](/../../../../staifa/readme-assets/blob/main/bhero3.jpeg)
 
