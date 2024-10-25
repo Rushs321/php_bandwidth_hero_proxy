@@ -16,7 +16,7 @@ No dependencies outside common PHP installation.
 
 Our old webhosting doesn't support `node.js` and I'm lately working on moblie connection a lot, so any way to save some megabytes is welcome.
 
-PHP also brings the advantage of being able to run the service on all webhostings that support it (they all do). No need for Heroku and similar services. It's lightweight and much less complicated to run and maintain. Node shines on parallelised infrastructure with high traffic whereas PHP is more suited for personal proxy used by you, your family and few friends.
+PHP also brings the advantage of being able to run the service on all webhostings that support it (they all do). No need for Heroku and similar services. It's lightweight and much less complicated to run and maintain. Node shines on parallelised infrastructure with high traffic whereas PHP is more suited for personal proxy used by you, your family and few friends. It's nice to have options to choose from.
 
 ## Demo
 
