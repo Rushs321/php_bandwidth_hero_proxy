@@ -92,11 +92,11 @@ There is no authorization switched on by default. There are 2 ways to set basic 
         "auth_password" => "yourpassword",
         ```
 
-All other settings have same defaults and can be changed in the extension settings. Quality is set between 0 to 100, 40 being a default. Greyscale setting is available for even more bandwidth savings.
+All other settings have sane defaults and can be changed in the extension settings. Quality is set between 0 to 100, 40 being a default. Greyscale setting is available for even more bandwidth savings.
 
 ## Running locally
 
-To run the service on your local machina:
+To run the service on your local machine:
 * Be sure to have latest [php](https://www.php.net/) installed
 * Open a terminal window and navigate to the service directory
 * Run
