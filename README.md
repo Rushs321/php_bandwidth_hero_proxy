@@ -27,9 +27,9 @@ PHP itself brings some new possibilities to the table too. It's nice to have opt
 
 ### Docker
 
-* Pull the app image from [dockerhub](https://hub.docker.com/r/staifa/php-bandwidth-hero-proxy)
+* Pull the container
     ```
-    docker pull staifa/php-bandwidth-hero-proxy
+    docker pull ghcr.io/staifa/php-bandwidth-hero-proxy:latest
     ```
 * Or build it by running following command in the root folder of this project
     ```
