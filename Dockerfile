@@ -10,4 +10,5 @@ RUN apt-get update && apt-get install -y \
 COPY . /usr/src/app
 WORKDIR /usr/src/app
 EXPOSE 9696
+LABEL org.opencontainers.image.source=https://github.com/staifa/php-bandwidth-hero-proxy
 CMD [ "php", "-S", "0.0.0.0:8000", "./index.php" ]

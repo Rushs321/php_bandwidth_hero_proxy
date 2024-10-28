@@ -36,7 +36,7 @@ function create()
             "min_compress_length" => $min_comp
         ] = $defaults;
 
-        if (!isset($url)) {
+        if (!$url) {
             echo "bandwidth-hero-proxy";
             return false;
         };
