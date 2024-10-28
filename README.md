@@ -70,7 +70,7 @@ PHP itself brings some new possibilities to the table too. It's nice to have opt
 
 ## Configuration
 
-There is no authorization switched on by default. There are 2 ways to set basic authentication with username and password
+Authentication is off by default. There are 2 ways to set basic auth with username and password
 
 * Setting them in you system environment variables
     * [Windows](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/set_1)
