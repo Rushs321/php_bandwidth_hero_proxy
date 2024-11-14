@@ -1,3 +1,4 @@
+<?php
 namespace staifa\php_bandwidth_hero_proxy\compression;
 
 // Image compression with resizing
